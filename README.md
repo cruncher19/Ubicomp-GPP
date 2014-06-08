@@ -18,7 +18,7 @@
   - `git clone https://github.com/cruncher19/Ubicomp-GPP`
 2. Create a user and database in postgres for the prediction system to use
   - in my case I used user: greenhouse, database: greenhousePower
-  - don't forget to give your user permissions on yoru new database
+  - don't forget to give your user permissions on your new database
 3. Change the `db_uri: db_uri: postgresql://greenhouse@localhost/greenhousePower` setting in the config file to point to your postgres instance
   - should be of the form: `db_uri: postgresql://<username>@localhost/<database>`
 4. Run `python initdb.py` to initialize the postgres database
