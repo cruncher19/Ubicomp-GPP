@@ -7,11 +7,15 @@
   - `pip install flask-sqlalchemy`
 * PostgreSQL server
   - Installation is OS dependant
+* PostgreSQL-server-dev-x.x
+  - Installation is OS dependant `sudo apt-get install postgresql-server-dev-9.1` for Ubuntu/Mint
 * pyowm
   - `pip install pyowm`
 * configparser
   - Probably installed by default
   - `pip install configparser`
+* psycopg2
+  - `pip install psycopg2`
 
 ## Project Installation
 1. Clone the repo onto your computer:
