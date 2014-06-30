@@ -2,11 +2,10 @@ from flask import Flask
 from flask import request
 from pyowm import OWM
 from utilities import getConfig
-print
 
 config       = getConfig('config.ini')
-OWM_API_key  = config.get('config', 'OWM_API_key')
-OWM_location = config.get('config', 'OWM_location')
+OWM_API_key  = config.get('config', 'OWM_API_key').encode('ascii')
+OWM_location = config.get('config', 'OWM_location').encode('ascii')
 
 app = Flask(__name__)
 

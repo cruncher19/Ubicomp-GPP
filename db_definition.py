@@ -1,8 +1,12 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from utilities import getConfig
+
+config = getConfig('config.ini')
+db_uri = config.get('config', 'db_uri');
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://greenhouse@localhost/greenhousePower'
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri 
 db = SQLAlchemy(app)
 
 class powerProduction(db.Model):
