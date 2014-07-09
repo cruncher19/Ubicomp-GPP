@@ -7,21 +7,21 @@ from utilities import getConfig
 # add code to pull data out of database through REST API when documentation on this is available
 powerData = None
 # Some fake placheolder data
-x = array([[1,2,3,4,5],
-            [5,4,3,2,1],
-            [2,3,1,5,4],
-            [3,4,1,2,5]])
+weatherData = array([[1,2,3,4,5],
+                    [5,4,3,2,1],
+                    [2,3,1,5,4],
+                    [3,4,1,2,5]])
 
-y = array([[10],
-            [9],
-            [8],
-            [7]])
+powerData = array([[10],
+                    [9],
+                    [8],
+                    [7]])
 
 # perform multivariate linear regression on the data to find the correlation between weather and power production
 model = linear_model.LinearRegression()
-model.fit(x,y)
+model.fit(weatherData,powerData)
 
-# fetch the current forcast
+# fetch the current forecast
 config = getConfig('config.ini')
 OWM_API_key = config.get('config', 'OWM_API_key').encode('ascii')
 OWM_location = config.get('config', 'OWM_location').encode('ascii')
