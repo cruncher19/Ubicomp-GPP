@@ -40,4 +40,4 @@ status = w.get_status()
 currentWeather = array([cloudCover, windSpeed, humidity, pressure, temperature])
 
 # use the regression model to generate production predictions based on the current forecast
-model.predict(currentWeather)
+print "Predicted power production: " + str(model.predict(currentWeather))
