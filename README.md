@@ -16,6 +16,8 @@
   - `pip install configparser`
 * psycopg2
   - `pip install psycopg2`
+* scikit-learn
+  - `pip install -U scikit-learn`
 
 ## Project Installation
 1. Clone the repo onto your computer:
@@ -33,4 +35,9 @@
 ## REST API Usage
 You can store power information in the database by POSTing to the server like this:
 `http://localhost:5000/storePowerProduction?powerLevel=50`
+
+## Power Production Prediction Usage
+run `python predictor.py` in the repository's directory. 
+
+This currently uses a fake dataset to build a regression model and then uses the current weather conditions with the model to estimate power production.
 
