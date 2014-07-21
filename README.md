@@ -39,5 +39,9 @@ You can store power information in the database by POSTing to the server like th
 ## Power Production Prediction Usage
 run `python predictor.py` in the repository's directory. 
 
+##Solar power website scraper usage
+python PowerScraper.py
+##This will print the time the site was last updated, the current daily power production and add the power information to the database via the REST API.
+
 This currently uses a fake dataset to build a regression model and then uses the current weather conditions with the model to estimate power production.
 
