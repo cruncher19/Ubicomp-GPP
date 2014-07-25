@@ -11,14 +11,14 @@ config = open('table_mapping.config')
 #Currently the metric being collected is peak power today. THis can be changed by setting the below variable
 metric = 'Peak Power Today'
 
-metric_value = ""
-
 #Fills the x-path mappings dictionary. This is more for flexibility in the future since we know what metrics we;re capturing
 for line in config:
 	mapping = line.split('->')
 	xpath_mappings[mapping[0]] = mapping[1]
 
 def getPower():
+	metric_value = "stale"
+
 	#Requests and stores page
 	page = requests.get('http://newquayweather.com/wxsolarpv.php')
 
@@ -40,19 +40,22 @@ def getPower():
 	#Convert to datetime object
 	current_time = datetime.datetime.fromtimestamp(ts)
 
-	print "Power data last updated on " + last_update + " GMT"
+	hours_diff = last_update_datetime.hour - current_time.hour - 4
 
-	#checks to see if last updated date is from a previous day
-	if last_update_datetime.day < current_time.day:
-		print "Power data is not from today, consider discarding..."
+	print hours_diff
 
+	if hours_diff >= 1:
+		print "Scraped power data stale, aborting REST call"
 
-	#If the metric requested is valid, parse the HTML and find the value (text_content)
-	if xpath_mappings.has_key(metric):
-	    metric_value = tree.xpath(xpath_mappings[metric])[0].text_content()
+	else:
+		print "Power data is " + str(hours_diff) + " hours old"
 
-	#Calls rest API
-	requests.get("http://localhost:5000/storePowerProduction?powerLevel=" + metric_value.replace("W", ""))
+		#If the metric requested is valid, parse the HTML and find the value (text_content)
+		if xpath_mappings.has_key(metric):
+		    metric_value = tree.xpath(xpath_mappings[metric])[0].text_content()
+
+		#Calls rest API
+		requests.get("http://localhost:5000/storePowerProduction?powerLevel=" + metric_value.replace("W", ""))
 
 	return metric_value.replace("W", "")
 
