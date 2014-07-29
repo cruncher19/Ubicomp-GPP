@@ -1,8 +1,8 @@
-from numpy import *
-from sklearn import linear_model
-from pyowm import OWM
-from utilities import getConfig
-from db_definition import powerProduction
+	from numpy import *
+	from sklearn import linear_model
+	from pyowm import OWM
+	from utilities import getConfig
+	from db_definition import powerProduction
 
 # Accepts an array of weather data and the corresponding power production array
 # Creates a linear regression model from the data
@@ -37,7 +37,7 @@ def predict():
 		model.fit(weatherData,powerData)
 
 		cloudCover = w.get_clouds()
-		windSpeed = w.get_wind()['speed']
+		windSpeed = 0
 		humidity = w.get_humidity()
 		pressure = w.get_pressure()['press']
 		temperature = w.get_temperature(unit='celsius')['temp']
