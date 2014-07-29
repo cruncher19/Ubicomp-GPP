@@ -15,7 +15,7 @@ def predict():
 	owm = OWM(OWM_API_key)
 	fc = owm.daily_forecast(OWM_location, limit=3)
 	f = fc.get_forecast()
-	
+
 	predictions = []
 	for w in f:
 		# Figure out if the sun is up(probably important)
@@ -25,7 +25,7 @@ def predict():
 		sunsetTime = w.get_sunset_time()
 		if(currTime > sunriseTime and currTime < sunsetTime):
 			daytime = 't'
-		result = powerProduction.query.filter_by(daytime=daytime, status=w.get_status)
+		result = powerProduction.query.filter_by(daytime=daytime, status=w.get_status())
 		weatherData = []
 		powerData = []
 		for r in result:
