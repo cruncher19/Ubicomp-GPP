@@ -49,4 +49,7 @@ def predict():
 		# print "Predicted power production: " + str(model.predict(currentWeather))
 		predictions.append(model.predict(currentWeather))
 
+	print "predictor run..."
+
 	return predictions
+
