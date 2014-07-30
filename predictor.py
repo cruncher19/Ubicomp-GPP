@@ -25,7 +25,7 @@ def predict():
 		sunsetTime = w.get_sunset_time()
 		if(currTime > sunriseTime and currTime < sunsetTime):
 			daytime = 't'
-		result = powerProduction.query.filter_by(daytime=daytime, status=w.get_status())
+		result = powerProduction.query.filter_by(daytime='t', status=w.get_status())
 		weatherData = []
 		powerData = []
 		for r in result:
@@ -37,10 +37,10 @@ def predict():
 		model.fit(weatherData,powerData)
 
 		cloudCover = w.get_clouds()
-		windSpeed = w.get_wind()['speed']
+		windSpeed = 0
 		humidity = w.get_humidity()
 		pressure = w.get_pressure()['press']
-		temperature = w.get_temperature(unit='celsius')['temp']
+		temperature = w.get_temperature(unit='celsius')['day']
 		status = w.get_status()
 
 		currentWeather = array([cloudCover, windSpeed, humidity, pressure, temperature])
