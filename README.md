@@ -35,6 +35,10 @@
 ## REST API Usage
 You can store power information in the database by POSTing to the server like this:
 `http://localhost:5000/storePowerProduction?powerLevel=50`
+You can turn off all devices connected to the power relay arduino like this:
+`http://localhost:5000/turnOffAllDevices`
+You can turn on all devices connected to the power relay arduino like this:
+`http://localhost:5000/turnOnAllDevices`
 
 ## Power Production Prediction Usage
 run `python predictor.py` in the repository's directory. 

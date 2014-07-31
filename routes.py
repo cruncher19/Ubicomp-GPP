@@ -1,13 +1,24 @@
 from flask import Flask
 from flask import request
 from pyowm import OWM
-from utilities import getConfig
+from utilities import getConfigimport urllib2
 
 config       = getConfig('config.ini')
 OWM_API_key  = config.get('config', 'OWM_API_key').encode('ascii')
 OWM_location = config.get('config', 'OWM_location').encode('ascii')
+arduinoAddress  = config.get('config', 'arduino_address').encode('ascii')
 
 app = Flask(__name__)
+
+@app.route('/turnOffAllDevices')
+def turnOffAllDevices():
+	urllib2.urlopen("http://arduino_address/sensoron").read()
+	return "Success!"
+
+@app.route('/turnOnAllDevices')
+def turnOnAllDevices():
+	urllib2.urlopen("http://arduino_address/sensoroff").read()
+	return "Success!"
 
 @app.route('/storePowerProduction')
 def storePowerProduction():
